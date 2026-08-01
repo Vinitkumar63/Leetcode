@@ -14,7 +14,8 @@ public:
                 ans+=(1LL<<shift);
                 dvd-=(dvs<<shift);
             }
-            if(dividend<0!=divisor<0)
+            // this is used to restore the sign
+            if((dividend<0)!=(divisor<0))
                 ans=-ans;
             
             return ans;

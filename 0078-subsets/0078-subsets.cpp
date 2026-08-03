@@ -1,27 +1,19 @@
 class Solution {
 public:
-
-        void solve(int index,vector<int>& nums , vector<int>& output ,vector<vector<int>> &ans ){
-            //base case
-            if(index==nums.size()){
-                ans.push_back(output);
-                return;
-            }
-            solve(index+1,nums,output,ans);
-            // we include that no.
-            output.push_back(nums[index]);
-
-          solve(index+1,nums,output,ans);
-          //back tracking
-          output.pop_back();
-
-        }
-
     vector<vector<int>> subsets(vector<int>& nums) {
-        int index;
-        vector<int> output;
+        // this problem is also solved by recursion 
+        //here we use bit manipulation
+        int n=nums.size();
         vector<vector<int>>ans;
-        solve(index,nums,output,ans);
-        return ans;
+       for(int mask=0;mask<(1<<n);mask++){
+        vector<int>subset;
+        for(int j=0;j<n;j++){
+            if(mask & (1<<j)){
+                subset.push_back(nums[j]);
+            }
+        }
+        ans.push_back(subset);
+       }
+       return ans;
     }
 };

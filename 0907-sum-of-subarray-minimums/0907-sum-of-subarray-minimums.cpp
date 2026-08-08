@@ -36,7 +36,7 @@ public:
         }
         long long ans=0;
         for(int i=0;i<n;i++){
-             long long contributor= 1LL*arr[i]*left[i]*right[i];
+             long long contributor= 1LL*arr[i]*left[i]*right[i]; // 1LL is importand as it show the long long end
              ans= (ans+contributor)%MOD;
         }
         return ans;

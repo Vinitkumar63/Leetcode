@@ -16,7 +16,7 @@ vector<int>ans;
     if(root==NULL)
         return;
 
-    ans.push_back(root->val);
+    ans.push_back(root->val); // val hota ha not value
     preorder(root->left);
     preorder(root->right);
    }

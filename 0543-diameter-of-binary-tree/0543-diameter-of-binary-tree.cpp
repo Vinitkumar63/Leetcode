@@ -6,27 +6,27 @@
  *     TreeNode *right;
  *     TreeNode() : val(0), left(nullptr), right(nullptr) {}
  *     TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
- *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
+ *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left),
+ * right(right) {}
  * };
  */
 class Solution {
 public:
     int diameter = 0;
-
     int height(TreeNode* root) {
+        // base case
         if (root == NULL)
             return 0;
 
-        int leftHeight = height(root->left);
-        int rightHeight = height(root->right);
+        int left = height(root->left);
 
-        // Longest path passing through this node
-        diameter = max(diameter, leftHeight + rightHeight);
+        int right = height(root->right);
 
-        // Return height of this node
-        return 1 + max(leftHeight, rightHeight);
+        diameter = max(diameter,
+                       left + right); // these both are int left and int right
+
+        return 1 + max(left, right);
     }
-
     int diameterOfBinaryTree(TreeNode* root) {
         height(root);
         return diameter;

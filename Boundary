@@ -1,0 +1,74 @@
+  class Solution {
+public:
+
+    bool isLeaf(TreeNode* root) {
+        return root->left == NULL && root->right == NULL;
+    }
+
+    void leftBoundary(TreeNode* root, vector<int>& ans) {
+        if (root == NULL || isLeaf(root)) {
+            return;
+        }
+
+        ans.push_back(root->val);
+
+        if (root->left != NULL) {
+            leftBoundary(root->left, ans);
+        }
+        else {
+            leftBoundary(root->right, ans);
+        }
+    }
+
+    void addLeaves(TreeNode* root, vector<int>& ans) {
+        if (root == NULL) {
+            return;
+        }
+
+        if (isLeaf(root)) {
+            ans.push_back(root->val);
+            return;
+        }
+
+        addLeaves(root->left, ans);
+        addLeaves(root->right, ans);
+    }
+
+    void rightBoundary(TreeNode* root, vector<int>& ans) {
+        if (root == NULL || isLeaf(root)) {
+            return;
+        }
+
+        if (root->right != NULL) {
+            rightBoundary(root->right, ans);
+        }
+        else {
+            rightBoundary(root->left, ans);
+        }
+
+        ans.push_back(root->val);
+    }
+
+    vector<int> boundary(TreeNode* root) {
+        vector<int> ans;
+
+        if (root == NULL) {
+            return ans;
+        }
+
+        if (isLeaf(root)) {
+            ans.push_back(root->val);
+            return ans;
+        }
+
+        ans.push_back(root->val);
+
+        leftBoundary(root->left, ans);
+
+        addLeaves(root, ans);
+
+        rightBoundary(root->right, ans);
+
+        return ans;
+    }
+};                                                                                              else {

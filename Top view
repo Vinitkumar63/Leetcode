@@ -1,0 +1,43 @@
+class Solution {
+public:
+    vector<int> topView(TreeNode* root) {
+        vector<int> ans;
+        
+        if (root == nullptr)
+            return ans;
+
+        // Map: horizontal distance -> node value
+        map<int, int> mp;
+
+        // Queue: {node, horizontal distance}
+        queue<pair<TreeNode*, int>> q;
+
+        q.push({root, 0});
+
+        while (!q.empty()) {
+            TreeNode* node = q.front().first;
+            int hd = q.front().second;
+            q.pop();
+
+            // Store only the first node at each horizontal distance
+            if (mp.find(hd) == mp.end()) {
+                mp[hd] = node->val;
+            }
+
+            if (node->left != nullptr) {
+                q.push({node->left, hd - 1});
+            }
+
+            if (node->right != nullptr) {
+                q.push({node->right, hd + 1});
+            }
+        }
+
+        // Map automatically gives values from leftmost to rightmost
+        for (auto it : mp) {
+            ans.push_back(it.second);
+        }
+
+        return ans;
+    }
+};

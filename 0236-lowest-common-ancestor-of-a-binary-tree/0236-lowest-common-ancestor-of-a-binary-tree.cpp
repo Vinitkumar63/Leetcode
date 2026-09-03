@@ -18,11 +18,11 @@ public:
         if(left!=NULL && right!=NULL){
                 return root;
         }
-        if(left!=NULL)
+        if(left!=NULL){
         return left;
-        
+        }else{
             return right;
-        
+        }
         
     }
 };

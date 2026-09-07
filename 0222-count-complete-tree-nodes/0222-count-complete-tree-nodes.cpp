@@ -11,33 +11,32 @@
  */
 class Solution {
 public:
-int findLeftNode(TreeNode*root){
-    int height=0;
-    while(root!=nullptr){
-        height++;
-       root= root->left;
-    }
-    return height;
-}
-int findRightNode(TreeNode*root){
-    int height=0;
-    while(root!=nullptr){
-        height++;
-        root=root->right;
-    }
-    return height;
-}
     int countNodes(TreeNode* root) {
-        if(root==nullptr){
+        if(root==NULL){
             return 0;
         }
-       int  left=findLeftNode(root);
-       int right=findRightNode(root);
+        int l=height_left(root);
+        int r=height_right(root);
+        if(l==r){
+            return (1<<l)-1;
+        }
+        return 1+countNodes(root->left)+countNodes(root->right);
+    }
+    int height_left(TreeNode* x){
+        int s=0;
+        while(x){
+            s++;
+            x=x->left;
+        }
+        return s;
+    }
 
-       if(left==right){
-        return (1<<left)-1;
-       }
-       return 1+countNodes(root->left)+countNodes(root->right);
-
+    int height_right(TreeNode* x){
+        int s=0;
+        while(x){
+            s++;
+            x=x->right;
+        }
+        return s;
     }
 };

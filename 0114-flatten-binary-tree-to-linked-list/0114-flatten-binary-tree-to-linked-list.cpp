@@ -11,6 +11,7 @@
  */
 class Solution {
 public:
+// here we use morris theorem
     void flatten(TreeNode* root) {
         TreeNode* curr= root;
         while(curr!=NULL){

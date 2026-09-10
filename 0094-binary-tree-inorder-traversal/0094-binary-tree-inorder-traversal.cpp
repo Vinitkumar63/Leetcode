@@ -27,7 +27,7 @@ public:
                     pred=pred->right;
                 }
                 // here we move left
-                if(pred->right==NULL){
+                if(pred->right==NULL){  // this is the last boottom right part of left tree
                     pred->right=curr;
                     
                     curr=curr->left;

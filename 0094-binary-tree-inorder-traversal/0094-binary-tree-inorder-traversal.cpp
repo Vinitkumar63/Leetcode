@@ -6,23 +6,39 @@
  *     TreeNode *right;
  *     TreeNode() : val(0), left(nullptr), right(nullptr) {}
  *     TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
- *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left),
- * right(right) {}
+ *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
  * };
  */
 class Solution {
 public:
-    vector<int> ans;
-    void inorder(TreeNode* root) {
-        if (root == NULL)
-            return;
-    
-    inorder(root->left);
-    ans.push_back(root->val);
-    inorder(root->right);
-    }
     vector<int> inorderTraversal(TreeNode* root) {
-        inorder(root);
+        // we are solving this by morris method must remember here the space complexity is 0(1) and time is o(n);
+        
+        vector<int>ans;
+        TreeNode* curr=root;
+        while(curr!=NULL){
+            if(curr->left==NULL){
+                ans.push_back(curr->val);
+                curr=curr->right;
+            }
+            else{
+                TreeNode* pred=curr->left;
+                while(pred->right!=NULL && pred->right!=curr){
+                    pred=pred->right;
+                }
+                // here we move left
+                if(pred->right==NULL){
+                    pred->right=curr;
+                    
+                    curr=curr->left;
+                }
+                else{
+                    pred->right=NULL; // this is the joint which we add at the end so taht we can reach ro the root again
+                    ans.push_back(curr->val);
+                    curr=curr->right; // because inorder is left root, right
+                }
+            }
+        }
         return ans;
     }
 };

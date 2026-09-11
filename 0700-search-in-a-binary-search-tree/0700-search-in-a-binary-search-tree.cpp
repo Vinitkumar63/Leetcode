@@ -16,7 +16,7 @@ public:
             if(root->val==val){
                 return root;
             }
-            else if(root->val >= val){
+            else if(root->val > val){
                 root= root->left;
             }else{
                 root= root->right;

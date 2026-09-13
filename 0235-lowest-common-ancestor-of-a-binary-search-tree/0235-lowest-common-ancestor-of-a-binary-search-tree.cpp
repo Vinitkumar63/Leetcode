@@ -22,6 +22,6 @@ public:
                 return root;
             }
         }
-        return NULL;
+        
     }
 };

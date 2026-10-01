@@ -1,4 +1,5 @@
-class Solution {
+const static auto fast_io = [](){ cin.tie(nullptr); ios::sync_with_stdio(false); return 0; }();
+class Solution {  
 public:
 void dfs(int row,int col,vector<vector<char>>& grid){
     // set boundary
